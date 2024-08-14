@@ -6,10 +6,10 @@ import org.testng.Assert;
 
 public class HomePage extends Data {
 
-    public HomePage welcomeText(){
+    public HomePage loginController(){
 
-        String welcomeText = driver.findElement(By.xpath("//*[text()='Tekrar hoş geldiniz!']")).getText();
-        Assert.assertEquals("Tekrar hoş geldiniz!", welcomeText);
+        String value =  driver.findElement(By.cssSelector("[data-uia='nmhp-card-hero-text-welcome']")).getText();
+        Assert.assertEquals("Tekrar hoş geldiniz!", value);
         return this;
     }
 }

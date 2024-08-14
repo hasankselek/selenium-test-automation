@@ -11,16 +11,45 @@ public class LoginTests extends BaseTest {
     HomePage homePage = new HomePage();
 
     @Test
-    public void loginSuccessful(){
+    public void loginSuccessful() throws InterruptedException {
 
         mainPage.clickOneTrustClose();
-
-        loginPage.fillEmail("hasankucukselek7@gmail.com")
-                 .fillPassword("Hasan1187.")
+        loginPage.fillEmail("testotomasyonu09@gmail.com")
+                 .fillPassword("Test1234.")
                  .clickLogin();
+        Thread.sleep(3000);
+        homePage.loginController();
+    }
 
-        homePage.welcomeText();
+    @Test
+    public void loginUnsuccessful() throws InterruptedException {
 
+        mainPage.clickOneTrustClose();
+        loginPage.fillEmail("testotomasyonu@gmail.com")
+                .fillPassword("Test1234.")
+                .clickLogin()
+                .unsuccessfulMessageController();
+
+    }
+
+    @Test
+    public void maxCharacterControl() throws InterruptedException {
+
+        mainPage.clickOneTrustClose();
+        loginPage.fillEmail("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasudhıaushdıaushgdıausghdıuasghdıuasghduıasuıd")
+                .fillPassword("12937123123y12983712837812ıasgdyıuagsdyugasyıudgaısuydghaıusydghauısghd")
+                .clickLogin()
+                .maxCharMessageController();
+
+    }
+
+    @Test
+    public void minCharacterControl() throws InterruptedException {
+
+        mainPage.clickOneTrustClose();
+        loginPage.fillEmail("testotomasyonu09@gmail.com")
+                .clickLogin()
+                .passwordMessageController();
 
 
     }
